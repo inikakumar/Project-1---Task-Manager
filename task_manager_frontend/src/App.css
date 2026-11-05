@@ -1,0 +1,483 @@
+/* ---------- Base (overrides Vite's default index.css) ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light;
+  background-color: #f3f4f6; /* kills the dark #242424 canvas behind the page */
+  color: #111827;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: block;        /* Vite sets display:flex + place-items:center */
+  place-items: initial;
+  min-width: 320px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #111827;
+  background-color: #f3f4f6;
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 40%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  /* Vite sets max-width, padding and text-align:center here */
+  max-width: none;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+
+.page {
+  text-align: left;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 16px 80px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color:#4338ca;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: #4b5563;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.06);
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+  text-align: left;
+  color:#111827;
+}
+
+.toolbar h2 {
+  margin: 0; /* heading sits centered with the filters */
+}
+
+/* ---------- Form controls ---------- */
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  height: 44px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+/* Consistent dropdown arrow across browsers */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 36px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236b7280' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+input::placeholder {
+  color: #6b7280;
+  opacity: 1;
+}
+
+/* Date input: same height/colour as the other fields */
+.date-input {
+  color: #111827;
+  min-width: 0;
+}
+
+.date-input::-webkit-datetime-edit,
+.date-input::-webkit-datetime-edit-fields-wrapper,
+.date-input::-webkit-datetime-edit-text,
+.date-input::-webkit-datetime-edit-month-field,
+.date-input::-webkit-datetime-edit-day-field,
+.date-input::-webkit-datetime-edit-year-field {
+  color: #111827;
+  padding: 0;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+input:focus,
+select:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ---------- Form layout ---------- */
+.form .row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.form .row > * {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.4);
+  outline-offset: 2px;
+}
+
+.btn.primary { background: #6366f1; color: #ffffff; }
+.btn.success { background: #10b981; color: #ffffff; }
+.btn.danger  { background: #ef4444; color: #ffffff; }
+
+/* ---------- Error ---------- */
+.error {
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Toolbar & filters ---------- */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  width: auto;
+  min-width: 150px;
+  height: 38px;
+}
+
+.muted {
+  margin: 8px 0;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* ---------- Task list ---------- */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 110px;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(17, 24, 39, 0.02);
+}
+
+.list li.done {
+  background: #f9fafb;
+}
+
+.list li.done strong {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0; /* allows ellipsis to work inside flex */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.task-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.task-title strong {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  flex-shrink: 0; /* badges never get squashed by long titles */
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.badge.status           { background: #e5e7eb; color: #374151; }
+.badge.status.completed { background: #d1fae5; color: #065f46; }
+.badge.status.active    { background: #fef3c7; color: #92400e; }
+
+.desc {
+  text-align: left;
+  color: #4b5563;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  text-align: left;
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* ---------- Row actions ---------- */
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.actions .btn {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .page {
+    padding: 24px 12px 60px;
+  }
+
+  .header h1 {
+    font-size: 1.7rem;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .form .row > * {
+    flex: 1 1 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters select {
+    flex: 1;
+  }
+
+  .list li {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .actions .btn {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ---------- Custom dropdown (opens below the field) ---------- */
+.dropdown {
+  position: relative;
+  height: 44px;
+  min-width: 0;
+}
+
+.dropdown.open {
+  z-index: 30;
+}
+
+.dropdown-trigger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f9fafb;
+  color: #111827;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+
+.dropdown-trigger svg {
+  flex-shrink: 0;
+  color: #6b7280;
+  transition: transform 0.15s;
+}
+
+.dropdown.open .dropdown-trigger svg {
+  transform: rotate(180deg);
+}
+
+.dropdown-trigger:focus-visible,
+.dropdown.open .dropdown-trigger {
+  outline: none;
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);   /* always below the field */
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.dropdown-option {
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: #111827;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-option.active {
+  background: #eef2ff;
+}
+
+.dropdown-option.selected {
+  font-weight: 600;
+  color: #4338ca;
+}
+
+/* Filter dropdowns in the Tasks toolbar */
+.filters .dropdown {
+  height: 38px;
+  min-width: 150px;
+}
+
+@media (max-width: 600px) {
+  .filters .dropdown {
+    flex: 1;
+  }
+}
